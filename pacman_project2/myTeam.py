@@ -24,7 +24,7 @@ from util import nearestPoint
 #################
 
 def createTeam(firstIndex, secondIndex, isRed,
-               first = 'MojAgent', second = 'DummyAgent'):
+               first = 'MojAgent', second = 'MojAgent'):
   """
   This function should return a list of two agents that will form the
   team, initialized using firstIndex and secondIndex as their agent
@@ -124,8 +124,8 @@ class MojAgent(CaptureAgent):
     maxValue = max(values)
     bestActions = [a for a, v in zip(actions, values) if v == maxValue]
 
-    #ako cu ja pojesti hranu onda stavi flag da sam bas ja pojeo a ne kolega pacman
     choice = random.choice(bestActions)
+    # ako cu ja pojesti hranu onda stavi flag da sam bas ja pojeo a ne kolega pacman
     self.willFoodBeEaten(choice)
     return choice
 
@@ -176,11 +176,11 @@ class MojAgent(CaptureAgent):
     self._action = action
 
     #pozovi sve funkcije za setovanje feature-a
-    self._init()
+    self._initRules()
     #vrati feature-a evaluate funkciji
     return self._features
 
-  def _init(self):
+  def _initRules(self):
     self.goAttack()
     self.setScore()
     self.playDefenseOrOffense()
@@ -194,27 +194,41 @@ class MojAgent(CaptureAgent):
   #---------------------------------------------------#
 
   def goAttack(self):
+    '''
+    funkcija setujes vrednost agentu.
+    ako je agent pacman to znaci u napadu je, to se ne kaznjava
+    ako nije pacman vec ghost, znaci u odbrani je, to se kaznjava malo
+    '''
     if self._succState.isPacman:
-      self._features['onDefense'] = 0 #ako je pacman, znaci u napadu je, to se ne kaznjava
+      self._features['onDefense'] = 0
     else:
-      self._features['onDefense'] = 1 #ako nije pacman vec ghost, znaci u odbrani je, to se kaznjava malo
+      self._features['onDefense'] = 1
 
   def setScore(self):
-    self._features['score'] = -len(self._foodList)  #dobija poene kada pojede bilo sta
+    '''
+    funkcija govori agentu da treba da pojede hranu i time se povecava score
+    '''
+    self._features['score'] = -len(self._foodList)
 
   def playDefenseOrOffense(self):
-    # ako nema napadaca idi da jedes najblizu hranu
+    '''
+    funkcija proverava da li ima napadaca na mojoj polovini mape.
+    ako nema napadaca agent ide da jede najblizu hranu
+    ako ima napadaca agent trci nazad  u odbranu
+    '''
     if len(self._invaders) <= 0:
       minDistance = min([self.getMazeDistance(self._succPos, food) for food in self._foodList])
       self._features['distanceToFood'] = minDistance
 
-    # ako ima napadaca trci nazad  u odbranu
     else:
       dists = [self.getMazeDistance(self._succPos, a.getPosition()) for a in self._invaders]
       self._features['invaderDistance'] = min(dists)
 
   def runAwayFromOpponent(self):
-    # ako sam u napadu onda bezi od protivnika
+    '''
+    racuna gde je pacman trenutno u odnosu na protivnika, duha.
+    ako je agent u napadu onda bezi od protivnika
+    '''
     if self._succState.isPacman:
       defenders = [a for a in self._enemies if a.isPacman is False and a.getPosition() != None]
       defendersDists = [self.getMazeDistance(self._succPos, a.getPosition()) for a in defenders]
@@ -224,27 +238,35 @@ class MojAgent(CaptureAgent):
       self._features['defendersDistance'] = 1 / total
 
   def stop(self):
-    # stajanje u mestu se kaznjava
+    '''
+    stajanje u mestu se kaznjava
+    '''
     if self._action == Directions.STOP:
       self._features['stop'] = 1
 
   def reverse(self):
-    # vracanje u nazad se isto kaznjava
+    '''
+    vracanje u nazad se isto kaznjava
+    '''
     rev = Directions.REVERSE[self._gameState.getAgentState(self.index).configuration.direction]
     if self._action == rev:
       self._features['reverse'] = 1
 
   def distanceBetweenAgents(self):
-    # da ne budu preblizu oba agenta
+    '''
+    tera agente da se priblizavaju jedan drugome previse
+    '''
     self._features['distanceBetweenAgents'] = self.getMazeDistance(
       self._succ.getAgentPosition(1),
       self._succ.getAgentPosition(3)
     )
 
   def returnFood(self):
-    # ako sam pojeo hranu vrati se nazad
-    # mora try blok jer baca exception u getMazeDistance
-    # kada probam da se pomerim u jednu stranu, a protivnicki pacman me je pojeo
+    '''
+    ako sam JA pojeo hranu vrati se nazad
+    mora try blok jer baca exception u getMazeDistance, kada probam da
+    se pomerim u jednu stranu, a protivnicki pacman me je pojeo
+    '''
     try:
       predecessor = self.getPreviousObservation()
       if predecessor is not None:
@@ -259,6 +281,10 @@ class MojAgent(CaptureAgent):
 
 
   def willFoodBeEaten(self, choice):
+    '''
+    ova funkcija proverava da li ce pacman nakon izabrane akcije pojesti hranu.
+    ovo je neophodno zbog returnFood pravila kako bi pacman tezio tome da kad skupi dovoljne hrane da se vrati
+    '''
     succState = self.getSuccessor(self._gameState, choice)
     succAgent = succState.getAgentState(self.index)
     succFood = len(self.getFood(succState).asList())
