@@ -336,8 +336,3 @@ class MojAgent(CaptureAgent):
       self.jaSamPojeo = True
       self._foodEaten += 1
 
-'''
-TODO: treba dodati da kada se agent vrati na svoju polovinu da tada se tada:
- self.jaSamPojeo setuje nazad na False
- self._foodEaten setuje na 0
- '''
