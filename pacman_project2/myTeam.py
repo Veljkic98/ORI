@@ -99,6 +99,7 @@ class MojAgent(CaptureAgent):
   def registerInitialState(self, gameState):
     self.start = gameState.getAgentPosition(self.index)
     CaptureAgent.registerInitialState(self, gameState)
+    self._foodEaten = 0
 
   def chooseAction(self, gameState):
     """
@@ -158,7 +159,7 @@ class MojAgent(CaptureAgent):
       'invaderDistance': -10,
       'stop': -10,
       'reverse': -2,
-      'distanceToHome': -300,
+      'distanceToHome': -10,
       'distanceBetweenAgents': 1,
       'defendersDistance': -100,
     }
@@ -189,6 +190,7 @@ class MojAgent(CaptureAgent):
     self.reverse()
     self.distanceBetweenAgents()
     self.returnFood()
+    self.willTheyEatMe()
 
   ### pravila kojih moj pacman mora da se pridrzava ###
   #---------------------------------------------------#
@@ -227,15 +229,46 @@ class MojAgent(CaptureAgent):
   def runAwayFromOpponent(self):
     '''
     racuna gde je pacman trenutno u odnosu na protivnika, duha.
-    ako je agent u napadu onda bezi od protivnika
+    ako je agent u napadu onda bezi od protivnika.
+    Ovde postoji i druga provera da agent ne stoji u mestu ako je protivnik odmah pored agenta, jer
+    ce ga u tom slucaju svaki normalan protivnik pojesti
     '''
     if self._succState.isPacman:
       defenders = [a for a in self._enemies if a.isPacman is False and a.getPosition() != None]
       defendersDists = [self.getMazeDistance(self._succPos, a.getPosition()) for a in defenders]
       total = 0
       for dist in defendersDists:
-        total += dist
-      self._features['defendersDistance'] = 1 / total
+        #druga provera
+        if dist == 1:
+          self._features['defendersDistance'] = 20
+          return
+        else:
+          total += dist
+          self._features['defendersDistance'] = 1 / total
+
+  def willTheyEatMe(self):
+    '''
+    ovo sluzi da agent ne izvrsi samoubistvo.
+    ako trenutna akcija koju razmatramo vodi do toga da ce mene pojesti protivnik, to je JAKO lose.
+    u koliko me protivnik pojede, zavrsicu na pocetnoj poziciji. To ne zelim da se desi.
+    Kako bih proverio da li cu zavrsiti na pocetnoj poziciji,
+    moram prvo da proverim da li sam crveni ili plavi tim
+    '''
+
+    #prva provera da ne odem bas u usta protivniku
+    myTeam = []
+    currPos = self._gameState.getAgentState(self.index).getPosition()
+    isMyTeamRed = self.red
+    if isMyTeamRed is True:
+      myTeam = self._gameState.redTeam
+    else:
+      myTeam = self._gameState.blueTeam
+
+    for i in myTeam:
+      initPos = self._gameState.getInitialAgentPosition(i)
+      if self._succPos == initPos and self.getMazeDistance(currPos, self._succPos) > 1:
+        self._features['defendersDistance'] = 20
+
 
   def stop(self):
     '''
@@ -265,7 +298,8 @@ class MojAgent(CaptureAgent):
     '''
     ako sam JA pojeo hranu vrati se nazad
     mora try blok jer baca exception u getMazeDistance, kada probam da
-    se pomerim u jednu stranu, a protivnicki pacman me je pojeo
+    se pomerim u jednu stranu, a protivnicki pacman me je pojeo.
+    Sto sam dalje od kuce to je evalute funkcija losija
     '''
     try:
       predecessor = self.getPreviousObservation()
@@ -275,7 +309,8 @@ class MojAgent(CaptureAgent):
           xHome = CaptureAgent.getFood(self, self._gameState).width // 3 + 1
           yHome = self._gameState.getAgentState(self.index).getPosition()[1]
           homeCoords = (xHome, yHome)
-          self._features['distanceToHome'] = self.getMazeDistance(self._succPos, homeCoords)
+          distanceToHome = self._foodEaten *  self._foodEaten *  self.getMazeDistance(self._succPos, homeCoords)
+          self._features['distanceToHome'] = distanceToHome
     except:
       pass
 
@@ -283,7 +318,8 @@ class MojAgent(CaptureAgent):
   def willFoodBeEaten(self, choice):
     '''
     ova funkcija proverava da li ce pacman nakon izabrane akcije pojesti hranu.
-    ovo je neophodno zbog returnFood pravila kako bi pacman tezio tome da kad skupi dovoljne hrane da se vrati
+    ovo je neophodno zbog returnFood pravila kako bi pacman tezio tome da kad skupi dovoljne hrane da se vrati,
+    sto vise hrane pacman pojede, to vise tezi tome da se vrati kuci
     '''
     succState = self.getSuccessor(self._gameState, choice)
     succAgent = succState.getAgentState(self.index)
@@ -292,5 +328,6 @@ class MojAgent(CaptureAgent):
     if succFood != currFood:
       # print('pojscu hranu')
       self.jaSamPojeo = True
+      self._foodEaten += 1
     else:
       self.jaSamPojeo = False
