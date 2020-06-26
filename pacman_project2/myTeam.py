@@ -91,7 +91,7 @@ class MojAgent(CaptureAgent):
     self.start = gameState.getAgentPosition(self.index)
     CaptureAgent.registerInitialState(self, gameState)
     self._foodEaten = 0
-
+    self.jaSamPojeo = False
   def chooseAction(self, gameState):
     """
     Picks among the actions with the highest Q(s,a).
@@ -119,6 +119,8 @@ class MojAgent(CaptureAgent):
     choice = random.choice(bestActions)
     # ako cu ja pojesti hranu onda stavi flag da sam bas ja pojeo a ne kolega pacman
     self.willFoodBeEaten(choice)
+    #ako sam vratio hranu koju sam pojeo, onda resetuj moju pojedenu hranu
+    self.isFoodReturned(choice)
     return choice
 
   def getSuccessor(self, gameState, action):
@@ -305,6 +307,20 @@ class MojAgent(CaptureAgent):
     except:
       pass
 
+  def isFoodReturned(self, choice):
+    '''
+    ova funkcija proverava da li ce pacman nakon izabrane akcije vratiti pojedenu hranu na svoj teren.
+    kada vrati hranu na svoj teren, atributi jaSamPojeo i _foodEaten se resetuju na pocetno stanje.
+    '''
+    succState = self.getSuccessor(self._gameState, choice)
+    succPosX = succState.getAgentState(self.index).getPosition()[0]
+    homeX = CaptureAgent.getFood(self, self._gameState).width //2
+
+    if succPosX == homeX and self.jaSamPojeo is True:
+      self.jaSamPojeo = False
+      self._foodEaten = 0
+
+
 
   def willFoodBeEaten(self, choice):
     '''
@@ -317,11 +333,8 @@ class MojAgent(CaptureAgent):
     succFood = len(self.getFood(succState).asList())
     currFood = len(self.getFood(self._gameState).asList())
     if succFood != currFood:
-      # print('pojscu hranu')
       self.jaSamPojeo = True
       self._foodEaten += 1
-    else:
-      self.jaSamPojeo = False
 
 '''
 TODO: treba dodati da kada se agent vrati na svoju polovinu da tada se tada:
