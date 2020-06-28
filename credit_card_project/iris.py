@@ -8,13 +8,31 @@ from kmeans import KMeans
 
 
 def load_credit_cards():
-    df = pd.read_csv('credit_card_data.csv')
+    df = pd.read_csv('kartice1000prvih.csv')
     data = []
 
     for x, y in zip(df['PURCHASES_FREQUENCY'], df['ONEOFF_PURCHASES']):
         data.append([x, y])
 
-    print(data)
+    return data
+
+def load_excessive_spend():
+    '''
+    Ucitava kreditne kartice sa atributima limit i ukupan iznos potrosen na kupovoni
+
+    :return:
+    '''
+
+    df = pd.read_csv('kartice1000prvih.csv')
+    data = []
+
+    # PURCHASES - ukupan iznos potrosen na kupovinu
+    # CREDIT_LIMIT - limit kartice
+    for x, y in zip(df['PURCHASES'], df['CREDIT_LIMIT']):
+        print(str(x) + "   " + str(y))
+        data.append([x, y])
+
+    return data
 
 
 # --- UCITAVANJE I PRIKAZ IRIS DATA SETA --- #
@@ -35,7 +53,7 @@ def iris():
     # --- INICIJALIZACIJA I PRIMENA K-MEANS ALGORITMA --- #
 
     # TODO 2: K-means na Iris data setu
-    kmeans = KMeans(n_clusters=4, max_iter=100)
+    kmeans = KMeans(n_clusters=3, max_iter=100)
     kmeans.fit(iris_data, normalize=True)
 
     colors = {0: 'red', 1: 'green', 2: 'blue', 3: 'purple'}
@@ -50,6 +68,40 @@ def iris():
     plt.show()
 
     optimal_k_plot(iris_data)
+
+def plot_2_D(data):
+    # iscrtavamo sve tacke
+    plt.figure()
+    for i in range(len(data)):
+        # print(str(data[i][0]) + "   " + str(data[i][1]))
+        plt.scatter(data[i][0], data[i][1])
+
+    plt.xlabel('Ukupno potroseno')
+    plt.ylabel('Limit')
+    plt.show()
+
+    # --- INICIJALIZACIJA I PRIMENA K-MEANS ALGORITMA --- #
+
+    # TODO 2: K-means na Iris data setu
+    kmeans = KMeans(n_clusters=3, max_iter=100)
+    kmeans.fit(data, normalize=True)
+
+    colors = {0: 'red', 1: 'green', 2: 'blue'}  # , 3: 'purple'
+    plt.figure()
+    for idx, cluster in enumerate(kmeans.clusters):
+        plt.scatter(cluster.center[0], cluster.center[1], c=colors[idx], marker='x', s=200)  # iscrtavanje centara
+        for datum in cluster.data:  # iscrtavanje tacaka
+            plt.scatter(datum[0], datum[1], c=colors[idx])
+
+    plt.xlabel('Ukupno potroseno')
+    plt.ylabel('Limit')
+    plt.show()
+
+
+
+
+
+
 
 # --- ODREDJIVANJE OPTIMALNOG K --- #
 def optimal_k_plot(data):
@@ -75,9 +127,22 @@ def optimal_k_plot(data):
 
 
 if __name__ == '__main__':
-    iris()
+    # iris()
     print("Pocetak")
-    # load_credit_cards()
+    data = []  # lista podataka koje ucitamo
+
+    # data = load_credit_cards()
+    # optimal_k_plot(data)
+
+    data = load_excessive_spend()
+    # optimal_k_plot(data)
+    # print(data)
+    plot_2_D(data)
+
+
+
+
+
 
 
 
