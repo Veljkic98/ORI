@@ -10,7 +10,9 @@ from kmeans import KMeans
 
 
 def load_credit_cards():
-    df = pd.read_csv('kartice1000prvih.csv')
+    rows = int(input("Koliko linija zelite da ucitate >> "))
+
+    df = pd.read_csv('kartice1000prvih.csv', nrows=rows)
     data = []
 
     for x, y in zip(df['PURCHASES_FREQUENCY'], df['ONEOFF_PURCHASES']):
@@ -18,14 +20,13 @@ def load_credit_cards():
 
     return data
 
-def load_excessive_spend():
+def load_excessive_spend(df, nrows):
     '''
     Ucitava kreditne kartice sa atributima limit i ukupan iznos potrosen na kupovoni
 
     :return:
     '''
 
-    df = pd.read_csv('kartice1000prvih.csv')
     data = []
 
     # PURCHASES - ukupan iznos potrosen na kupovinu
@@ -71,20 +72,19 @@ def iris():
 
     optimal_k_plot(iris_data)
 
-def plot_2_D(data):
+def plot_2_D(data, xlab, ylab):
     # iscrtavamo sve tacke
     plt.figure()
     for i in range(len(data)):
-        # print(str(data[i][0]) + "   " + str(data[i][1]))
         plt.scatter(data[i][0], data[i][1])
 
-    plt.xlabel('Ukupno potroseno')
-    plt.ylabel('Limit')
+    plt.xlabel(xlab)
+    plt.ylabel(ylab)
     plt.show()
 
     # --- INICIJALIZACIJA I PRIMENA K-MEANS ALGORITMA --- #
 
-    # TODO 2: K-means na Iris data setu
+    # ovo je prethodno bilo za Iris data set
     kmeans = KMeans(n_clusters=3, max_iter=100)
     kmeans.fit(data, normalize=False)
 
@@ -95,13 +95,9 @@ def plot_2_D(data):
         for datum in cluster.data:  # iscrtavanje tacaka
             plt.scatter(datum[0], datum[1], c=colors[idx])
 
-    plt.xlabel('Ukupno potroseno')
-    plt.ylabel('Limit')
+    plt.xlabel(xlab)
+    plt.ylabel(ylab)
     plt.show()
-
-
-
-
 
 
 
@@ -126,7 +122,6 @@ def optimal_k_plot(data):
     plt.xlabel('# of clusters')
     plt.ylabel('SSE')
     plt.show()
-
 
 def make_patch_spines_invisible(ax):
     ax.set_frame_on(True)
@@ -183,20 +178,18 @@ def plot_3_D(data):
 
 
 if __name__ == '__main__':
-    # iris()
-    print("Pocetak")
-    data = []  # lista podataka koje ucitamo
+    nrows = int(input("Koliko linija zelite da ucitate >> "))
 
-    # data = load_credit_cards()
+    df = pd.read_csv('kartice1000prvih.csv', nrows=nrows)
+
+    # ovo ce biti za jednu kombinaciju. imacemo dosta vise
+    data = load_excessive_spend(df, nrows)
     # optimal_k_plot(data)
+    plot_2_D(data, 'Ukupno potroseno', 'Limit')
 
-    data = load_excessive_spend()
-    # optimal_k_plot(data)
-    # print(data)
-    plot_2_D(data)
 
-    plot_3_D(data)
-
+    # Isprobavam
+    # plot_3_D(data)
 
 
 
