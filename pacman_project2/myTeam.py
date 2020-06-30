@@ -111,7 +111,6 @@ class MojAgent(CaptureAgent):
           bestDist = dist
       return bestAction
 
-
     values = [self.evaluate(gameState, a) for a in actions]
     maxValue = max(values)
     bestActions = [a for a, v in zip(actions, values) if v == maxValue]

@@ -4,88 +4,116 @@ from tensorflow.keras.optimizers import Adam
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Conv2D,Flatten, Activation, MaxPooling2D
 from keras.preprocessing.image import ImageDataGenerator
+import matplotlib.pyplot as plt
+import numpy
 
+def main():
 
+    # load images #
+    #-------------#
 
-def load():
     train_path = 'train'
     valid_path = 'valid'
     test_path  = 'test'
 
-    global train_batches, valid_batches, test_baches
+    train_batches = ImageDataGenerator(rescale=1./255).flow_from_directory(directory=train_path,
+                                                                           target_size=(32,32),
+                                                                           classes=['dog', 'cat'],
+                                                                           batch_size=BS)
 
-    train_batches = ImageDataGenerator()\
-        .flow_from_directory(directory=train_path,
-                             target_size=(64,64),
-                             classes=['dog', 'cat'],
-                             batch_size=BS)
+    valid_batches = ImageDataGenerator(rescale=1./255).flow_from_directory(directory=valid_path,
+                                                                           target_size=(32,32),
+                                                                           classes=['dog', 'cat'],
+                                                                           batch_size=BS)
 
-    valid_batches = ImageDataGenerator()\
-        .flow_from_directory(directory=valid_path,
-                             target_size=(64,64),
-                             classes=['dog', 'cat'],
-                             batch_size=BS)
-    test_baches = ImageDataGenerator()\
-        .flow_from_directory(directory=test_path,
-                             target_size=(64,64),
-                             classes=['dog', 'cat'],
-                             batch_size=BS)
+    test_batches = ImageDataGenerator(rescale=1./255).flow_from_directory(directory=test_path,
+                                                                         target_size=(32,32),
+                                                                         classes=['dog', 'cat'],
+                                                                         batch_size=BS)
 
-    global  STEPS_PER_EPOCH, VALIDATION_STEP
+
+    # calculate steps #
+    #-----------------#
+
     STEPS_PER_EPOCH =  round( len(train_batches.filenames)/ BS)
     VALIDATION_STEP =  round( len(valid_batches.filenames) / BS)
 
 
-def train():
-    # building and training cnn
+
+    # building and training cnn #
+    # ---------------------------#
+
     model = Sequential()
-    model.add(Conv2D(64, (3,3), input_shape=(64,64,3)))
+
+    model.add(Conv2D(32, (3,3), input_shape=(32,32,3)))
     model.add(Activation('relu'))
-    model.add(Conv2D(64, (3,3), input_shape=(64,64,3)))
+    model.add(MaxPooling2D(pool_size=(2, 2)))
+
+    model.add(Conv2D(32, (3,3)))
     model.add(Activation('relu'))
     model.add(MaxPooling2D(pool_size=(2,2)))
 
-    model.add(Conv2D(64, (3,3), input_shape=(64,64,3)))
+    model.add(Conv2D(64, (3,3)))
     model.add(Activation('relu'))
-    model.add(Conv2D(64, (3,3), input_shape=(64,64,3)))
-    model.add(Activation('relu'))
-    model.add(MaxPooling2D(pool_size=(2,2)))
 
-    model.add(Conv2D(64, (3,3), input_shape=(64,64,3)))
-    model.add(Activation('relu'))
-    model.add(Conv2D(64, (3,3), input_shape=(64,64,3)))
-    model.add(Activation('relu'))
-    model.add(MaxPooling2D(pool_size=(2,2)))
-
-
-    #classifier
     model.add(Flatten())
+    model.add(Dense(64, activation='relu'))
     model.add(Dense(2, activation='softmax'))
 
     model.compile(optimizer=Adam(lr=0.0001), loss='categorical_crossentropy', metrics=['accuracy'] )
 
-    #train
-    model.fit_generator(generator=train_batches,
+    history = model.fit_generator(generator=train_batches,
                         steps_per_epoch=STEPS_PER_EPOCH,
                         validation_data=valid_batches,
                         validation_steps=VALIDATION_STEP,
-                        epochs=5,
+                        epochs=10,
                         verbose=2)
 
 
-    predictions = model.predict_generator(test_baches,steps=1, verbose=0)
-    print(model.summary())
 
+    # history data to plot#
+    #---------------------#
+
+    train_loss = history.history['loss']
+    val_loss = history.history['val_loss']
+    train_acc = history.history['accuracy']
+    val_acc = history.history['val_accuracy']
+    epochs = range(1, len(val_loss) + 1)
+
+    # plot loss #
+    #-----------#
+    plt.figure()
+    plt.plot(epochs, train_loss, 'ro', label='Training loss')
+    plt.plot(epochs, val_loss, 'b-', label='Validation loss')
+    plt.title('Training and validation loss')
+    plt.xlabel('Epochs')
+    plt.ylabel('Loss')
+    plt.legend()
+    plt.show()
+
+    # plot accuracy #
+    #---------------#
+    plt.figure()
+    plt.plot(epochs, train_acc, 'ro', label='Training accuracy')
+    plt.plot(epochs, val_acc, 'b-', label='Validation accuracy')
+    plt.title('Training and validation accuracy')
+    plt.xlabel('Epochs')
+    plt.ylabel('accuracy')
+    plt.legend()
+    plt.show()
+
+
+    # testing #
+    #---------#
+    predictions = model.predict(x=test_batches, verbose=0)
+    print(predictions)
+    print(numpy.round(predictions))
+
+    # macka je: [0, 1]
+    # pas bi trebalo da bude: [1,0]
 
 if __name__ == '__main__':
-    train_batches = valid_batches = test_baches = None
-    BS = 50
+    BS = 40
+    train_batches = valid_batches = test_batches = None
     STEPS_PER_EPOCH = VALIDATION_STEP = None
-
-    #load images for model
-    load()
-    #set steps for training
-    STEPS_PER_EPOCH =  round( len(train_batches.filenames)/ BS)
-    VALIDATION_STEP =  round( len(valid_batches.filenames) / BS)
-    #train nn
-    train()
+    main()
