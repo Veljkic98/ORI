@@ -2,9 +2,13 @@ from tensorflow.keras.optimizers import Adam
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Conv2D,Flatten, Activation, MaxPooling2D
 from keras.preprocessing.image import ImageDataGenerator
+<<<<<<< HEAD
+# from tensorflow import
+=======
 import matplotlib.pyplot as plt
 import warnings
 warnings.simplefilter(action='ignore')
+>>>>>>> 6fea7fb86df163aa06bed8b222407cf68a2c0e9d
 
 def main():
     BS = 40

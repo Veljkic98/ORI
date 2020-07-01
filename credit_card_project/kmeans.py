@@ -57,7 +57,7 @@ class KMeans(object):
         iter_no = 0
         not_moves = False
         while iter_no <= self.max_iter and (not not_moves):  # dok god je not_moves False
-            # ispraznimo podatke klastera
+            # ispraznimo podatke klastera, jer poske svake iteracije mogu da budu drugi elementi unutar grupe/klastera
             for cluster in self.clusters:
                 cluster.data = []
 
@@ -79,7 +79,6 @@ class KMeans(object):
 
                 not_moves = not_moves and (cluster.center == old_center)
 
-            print("Iter no: " + str(iter_no))
             iter_no += 1
 
     def predict(self, datum):
@@ -89,7 +88,7 @@ class KMeans(object):
         min_distance = None
         cluster_index = None
 
-        # ako imamo 5 grupa (klastera), iteriramo kroz
+        # Iteriramo kroz sve klastere
         for index in xrange(len(self.clusters)):
             distance = self.euclidean_distance(datum, self.clusters[index].center)
             if min_distance is None or distance < min_distance:
