@@ -1,5 +1,3 @@
-import tensorflow as tf
-from tensorflow.keras.losses import categorical_crossentropy
 from tensorflow.keras.optimizers import Adam
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Conv2D,Flatten, Activation, MaxPooling2D
@@ -7,8 +5,9 @@ from keras.preprocessing.image import ImageDataGenerator
 import matplotlib.pyplot as plt
 import warnings
 warnings.simplefilter(action='ignore')
-def main():
 
+def main():
+    BS = 40
     # load images #
     #-------------#
 
@@ -16,20 +15,23 @@ def main():
     valid_path = 'valid'
     test_path  = 'test'
 
-    train_batches = ImageDataGenerator(rescale=1./255).flow_from_directory(directory=train_path,
-                                                                           target_size=(32,32),
-                                                                           classes=['car', 'plane', 'ship'],
-                                                                           batch_size=BS)
+    train_batches = ImageDataGenerator(rescale=1./255)
+    train_batches = train_batches.flow_from_directory(directory=train_path,
+                                                      target_size=(32,32),
+                                                      classes=['car', 'plane', 'ship'],
+                                                      batch_size=BS)
 
-    valid_batches = ImageDataGenerator(rescale=1./255).flow_from_directory(directory=valid_path,
-                                                                           target_size=(32,32),
-                                                                           classes=['car', 'plane', 'ship'],
-                                                                           batch_size=BS)
+    valid_batches = ImageDataGenerator(rescale=1./255)
+    valid_batches = valid_batches.flow_from_directory(directory=valid_path,
+                                                      target_size=(32,32),
+                                                      classes=['car', 'plane', 'ship'],
+                                                      batch_size=BS)
 
-    test_batches = ImageDataGenerator(rescale=1./255).flow_from_directory(directory=test_path,
-                                                                         target_size=(32,32),
-                                                                         classes=['car', 'plane', 'ship'],
-                                                                         batch_size=BS)
+    test_batches = ImageDataGenerator(rescale=1./255)
+    test_batches = test_batches.flow_from_directory(directory=test_path,
+                                                    target_size=(32,32),
+                                                    classes=['car', 'plane', 'ship'],
+                                                    batch_size=BS)
 
 
     # calculate steps #
@@ -115,6 +117,8 @@ def main():
     def show_batch(image_batch, label_batch):
         plt.figure(figsize=(10, 10))
         for n in range(25):
+            if n >= len(image_batch):
+                break
             plt.subplot(5, 5, n + 1)
             plt.imshow(image_batch[n])
             plt.title(label_batch[n])
@@ -136,7 +140,4 @@ def main():
 
 
 if __name__ == '__main__':
-    BS = 40
-    # train_batches = valid_batches = test_batches = None
-    # STEPS_PER_EPOCH = VALIDATION_STEP = None
     main()
