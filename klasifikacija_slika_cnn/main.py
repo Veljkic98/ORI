@@ -5,8 +5,8 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Conv2D,Flatten, Activation, MaxPooling2D
 from keras.preprocessing.image import ImageDataGenerator
 import matplotlib.pyplot as plt
-import numpy
-
+import warnings
+warnings.simplefilter(action='ignore')
 def main():
 
     # load images #
@@ -18,17 +18,17 @@ def main():
 
     train_batches = ImageDataGenerator(rescale=1./255).flow_from_directory(directory=train_path,
                                                                            target_size=(32,32),
-                                                                           classes=['dog', 'cat'],
+                                                                           classes=['car', 'plane', 'ship'],
                                                                            batch_size=BS)
 
     valid_batches = ImageDataGenerator(rescale=1./255).flow_from_directory(directory=valid_path,
                                                                            target_size=(32,32),
-                                                                           classes=['dog', 'cat'],
+                                                                           classes=['car', 'plane', 'ship'],
                                                                            batch_size=BS)
 
     test_batches = ImageDataGenerator(rescale=1./255).flow_from_directory(directory=test_path,
                                                                          target_size=(32,32),
-                                                                         classes=['dog', 'cat'],
+                                                                         classes=['car', 'plane', 'ship'],
                                                                          batch_size=BS)
 
 
@@ -49,7 +49,7 @@ def main():
     model.add(Activation('relu'))
     model.add(MaxPooling2D(pool_size=(2, 2)))
 
-    model.add(Conv2D(32, (3,3)))
+    model.add(Conv2D(64, (3,3)))
     model.add(Activation('relu'))
     model.add(MaxPooling2D(pool_size=(2,2)))
 
@@ -58,9 +58,9 @@ def main():
 
     model.add(Flatten())
     model.add(Dense(64, activation='relu'))
-    model.add(Dense(2, activation='softmax'))
+    model.add(Dense(3, activation='softmax'))
 
-    model.compile(optimizer=Adam(lr=0.0001), loss='categorical_crossentropy', metrics=['accuracy'] )
+    model.compile(optimizer=Adam(lr=0.001), loss='categorical_crossentropy', metrics=['accuracy'] )
 
     history = model.fit_generator(generator=train_batches,
                         steps_per_epoch=STEPS_PER_EPOCH,
@@ -103,17 +103,40 @@ def main():
     plt.show()
 
 
+
     # testing #
     #---------#
-    predictions = model.predict(x=test_batches, verbose=0)
-    print(predictions)
-    print(numpy.round(predictions))
+    # predictions = model.predict(x=test_batches, verbose=0)
+    # print(predictions)
+    # print(numpy.round(predictions))
 
-    # macka je: [0, 1]
-    # pas bi trebalo da bude: [1,0]
+    # plot testing images #
+    #---------------------#
+    def show_batch(image_batch, label_batch):
+        plt.figure(figsize=(10, 10))
+        for n in range(25):
+            plt.subplot(5, 5, n + 1)
+            plt.imshow(image_batch[n])
+            plt.title(label_batch[n])
+            plt.axis('off')
+        plt.show()
+
+    # uncomment to plot all test images #
+    #-----------------------------------#
+    for _ in test_batches:
+        image_batch,label_batch = _
+        show_batch(image_batch, label_batch)
+
+    # uncomment to plot one batch #
+    #-----------------------------#
+    # image_batch,label_batch = next(test_batches)
+    # show_batch(image_batch, label_batch)
+
+
+
 
 if __name__ == '__main__':
     BS = 40
-    train_batches = valid_batches = test_batches = None
-    STEPS_PER_EPOCH = VALIDATION_STEP = None
+    # train_batches = valid_batches = test_batches = None
+    # STEPS_PER_EPOCH = VALIDATION_STEP = None
     main()
