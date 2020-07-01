@@ -18,19 +18,19 @@ def main():
     train_batches = ImageDataGenerator(rescale=1./255)
     train_batches = train_batches.flow_from_directory(directory=train_path,
                                                       target_size=(32,32),
-                                                      classes=['car', 'plane', 'ship'],
+                                                      classes=['car', 'plane', 'ship', 'truck'],
                                                       batch_size=BS)
 
     valid_batches = ImageDataGenerator(rescale=1./255)
     valid_batches = valid_batches.flow_from_directory(directory=valid_path,
                                                       target_size=(32,32),
-                                                      classes=['car', 'plane', 'ship'],
+                                                      classes=['car', 'plane', 'ship', 'truck'],
                                                       batch_size=BS)
 
     test_batches = ImageDataGenerator(rescale=1./255)
     test_batches = test_batches.flow_from_directory(directory=test_path,
                                                     target_size=(32,32),
-                                                    classes=['car', 'plane', 'ship'],
+                                                    classes=['car', 'plane', 'ship', 'truck'],
                                                     batch_size=BS)
 
 
@@ -47,20 +47,26 @@ def main():
 
     model = Sequential()
 
-    model.add(Conv2D(32, (3,3), input_shape=(32,32,3)))
+    model.add(Conv2D(32, (3,3), input_shape=(32,32,3),padding='same'))
     model.add(Activation('relu'))
     model.add(MaxPooling2D(pool_size=(2, 2)))
 
-    model.add(Conv2D(64, (3,3)))
+    model.add(Conv2D(32, (3,3),padding='same'))
+    model.add(Activation('relu'))
+    model.add(MaxPooling2D(pool_size=(2, 2)))
+
+    model.add(Conv2D(64, (3, 3),padding='same'))
     model.add(Activation('relu'))
     model.add(MaxPooling2D(pool_size=(2,2)))
 
-    model.add(Conv2D(64, (3,3)))
+
+
+    model.add(Conv2D(128, (3,3)))
     model.add(Activation('relu'))
 
     model.add(Flatten())
-    model.add(Dense(64, activation='relu'))
-    model.add(Dense(3, activation='softmax'))
+    model.add(Dense(128, activation='relu'))
+    model.add(Dense(4, activation='softmax'))
 
     model.compile(optimizer=Adam(lr=0.001), loss='categorical_crossentropy', metrics=['accuracy'] )
 
@@ -86,7 +92,7 @@ def main():
     #-----------#
     plt.figure()
     plt.plot(epochs, train_loss, 'ro', label='Training loss')
-    plt.plot(epochs, val_loss, 'b-', label='Validation loss')
+    plt.plot(epochs, val_loss, 'g-', label='Validation loss')
     plt.title('Training and validation loss')
     plt.xlabel('Epochs')
     plt.ylabel('Loss')
@@ -97,7 +103,7 @@ def main():
     #---------------#
     plt.figure()
     plt.plot(epochs, train_acc, 'ro', label='Training accuracy')
-    plt.plot(epochs, val_acc, 'b-', label='Validation accuracy')
+    plt.plot(epochs, val_acc, 'g-', label='Validation accuracy')
     plt.title('Training and validation accuracy')
     plt.xlabel('Epochs')
     plt.ylabel('accuracy')
@@ -127,9 +133,9 @@ def main():
 
     # uncomment to plot all test images #
     #-----------------------------------#
-    for _ in test_batches:
-        image_batch,label_batch = _
-        show_batch(image_batch, label_batch)
+    # for _ in test_batches:
+    #     image_batch,label_batch = _
+    #     show_batch(image_batch, label_batch)
 
     # uncomment to plot one batch #
     #-----------------------------#
