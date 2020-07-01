@@ -128,11 +128,15 @@ def main1():
 
     data = load_data(df, best_cols)
 
+    # pomocu sledeceg plota cemo videti koliko komponenti da uzmemo
+
     pca = PCA().fit(data)  # uzima sve komponente
     plt.plot(pca.explained_variance_ratio_.cumsum())
     plt.xlabel('number of components')
     plt.ylabel('cumulative explained variance');
     plt.show()
+
+    ###################
 
     pca = PCA(n_components=2)  # iz plota iznad gledamo oko 80%, i toliko setujemo broj komponenti
     pca.fit(data)
