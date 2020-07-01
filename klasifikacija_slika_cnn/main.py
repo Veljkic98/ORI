@@ -47,19 +47,13 @@ def main():
 
     model = Sequential()
 
-    model.add(Conv2D(64, (3,3), input_shape=(32,32,3),padding='same'))
+    model.add(Conv2D(32, (3,3), input_shape=(32,32,3),padding='same'))
     model.add(Activation('relu'))
     model.add(MaxPooling2D(pool_size=(2, 2)))
 
-    model.add(Conv2D(64, (3,3),padding='same'))
-    model.add(Activation('relu'))
-    model.add(MaxPooling2D(pool_size=(2, 2)))
-
-    model.add(Conv2D(128, (3, 3),padding='same'))
+    model.add(Conv2D(64, (3, 3),padding='same'))
     model.add(Activation('relu'))
     model.add(MaxPooling2D(pool_size=(2,2)))
-
-
 
     model.add(Conv2D(128, (3,3)))
     model.add(Activation('relu'))
@@ -74,7 +68,7 @@ def main():
                         steps_per_epoch=STEPS_PER_EPOCH,
                         validation_data=valid_batches,
                         validation_steps=VALIDATION_STEP,
-                        epochs=10,
+                        epochs=13,
                         verbose=2)
 
 
