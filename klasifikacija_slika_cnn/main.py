@@ -1,6 +1,7 @@
 from tensorflow.keras.optimizers import Adam
 from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense, Conv2D,Flatten, Activation, MaxPooling2D, Dropout
+from tensorflow.keras.layers \
+    import Dense, Conv2D,Flatten, Activation, MaxPooling2D, Dropout, BatchNormalization
 from keras.preprocessing.image import ImageDataGenerator
 import matplotlib.pyplot as plt
 import warnings
@@ -49,18 +50,19 @@ def main():
 
     model.add(Conv2D(32, (3,3), input_shape=(32,32,3),padding='same'))
     model.add(Activation('relu'))
-    model.add(MaxPooling2D(pool_size=(2, 2)))
 
     model.add(Conv2D(64, (3, 3),padding='same'))
     model.add(Activation('relu'))
     model.add(MaxPooling2D(pool_size=(2,2)))
+    model.add(Dropout(rate=0.5))
 
-    model.add(Conv2D(128, (3,3)))
+    model.add(Conv2D(256, (3,3)))
     model.add(Activation('relu'))
+    model.add(MaxPooling2D(pool_size=(2, 2)))
     model.add(Dropout(rate=0.5))
 
     model.add(Flatten())
-    model.add(Dense(32, activation='relu'))
+    model.add(Dense(64, activation='relu'))
     model.add(Dense(4, activation='softmax'))
 
     #default lr=0.001
@@ -74,6 +76,7 @@ def main():
                         verbose=2)
 
 
+    test = model.evaluate(test_batches)
 
     # history data to plot#
     #---------------------#
