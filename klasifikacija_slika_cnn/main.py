@@ -1,6 +1,6 @@
 from tensorflow.keras.optimizers import Adam
 from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense, Conv2D,Flatten, Activation, MaxPooling2D
+from tensorflow.keras.layers import Dense, Conv2D,Flatten, Activation, MaxPooling2D, Dropout
 from keras.preprocessing.image import ImageDataGenerator
 import matplotlib.pyplot as plt
 import warnings
@@ -57,11 +57,13 @@ def main():
 
     model.add(Conv2D(128, (3,3)))
     model.add(Activation('relu'))
+    model.add(Dropout(rate=0.5))
 
     model.add(Flatten())
-    model.add(Dense(128, activation='relu'))
+    model.add(Dense(32, activation='relu'))
     model.add(Dense(4, activation='softmax'))
 
+    #default lr=0.001
     model.compile(optimizer=Adam(lr=0.001), loss='categorical_crossentropy', metrics=['accuracy'] )
 
     history = model.fit_generator(generator=train_batches,
