@@ -1,0 +1,847 @@
+*** OPIS SVIH KLASTERA ***
+
+Klaster 1
+Atribut: BALANCE:
+	Minimum: 0.0
+	Prvi kvartil: 121.4032535
+	Mediana: 871.7855285
+	Treci kvartil: 1634.06444075
+	Maksimum: 9061.317491
+	Srednja vrednost: 1134.3848683882059
+
+Atribut: BALANCE_FREQUENCY:
+	Minimum: 0.0
+	Prvi kvartil: 0.636364
+	Mediana: 1.0
+	Treci kvartil: 1.0
+	Maksimum: 1.0
+	Srednja vrednost: 0.8107170047512576
+
+Atribut: PURCHASES:
+	Minimum: 0.0
+	Prvi kvartil: 0.0
+	Mediana: 69.85
+	Treci kvartil: 329.195
+	Maksimum: 5744.03
+	Srednja vrednost: 275.09354667411964
+
+Atribut: ONEOFF_PURCHASES:
+	Minimum: 0.0
+	Prvi kvartil: 0.0
+	Mediana: 0.0
+	Treci kvartil: 205.765
+	Maksimum: 4674.21
+	Srednja vrednost: 207.7848826159866
+
+Atribut: INSTALLMENTS_PURCHASES:
+	Minimum: 0.0
+	Prvi kvartil: 0.0
+	Mediana: 0.0
+	Treci kvartil: 56.285000000000004
+	Maksimum: 3000.0
+	Srednja vrednost: 67.45028787031862
+
+Atribut: CASH_ADVANCE:
+	Minimum: 0.0
+	Prvi kvartil: 0.0
+	Mediana: 134.57016600000003
+	Treci kvartil: 949.5501495
+	Maksimum: 6523.780195
+	Srednja vrednost: 616.9146823915596
+
+Atribut: PURCHASES_FREQUENCY:
+	Minimum: 0.0
+	Prvi kvartil: 0.0
+	Mediana: 0.083333
+	Treci kvartil: 0.25
+	Maksimum: 0.833333
+	Srednja vrednost: 0.15790136109558414
+
+Atribut: ONEOFF_PURCHASES_FREQUENCY:
+	Minimum: 0.0
+	Prvi kvartil: 0.0
+	Mediana: 0.0
+	Treci kvartil: 0.083333
+	Maksimum: 0.583333
+	Srednja vrednost: 0.07716893236444941
+
+Atribut: PURCHASES_INSTALLMENTS_FREQUENCY:
+	Minimum: 0.0
+	Prvi kvartil: 0.0
+	Mediana: 0.0
+	Treci kvartil: 0.083333
+	Maksimum: 0.666667
+	Srednja vrednost: 0.08132527221911681
+
+Atribut: CASH_ADVANCE_FREQUENCY:
+	Minimum: 0.0
+	Prvi kvartil: 0.0
+	Mediana: 0.083333
+	Treci kvartil: 0.166667
+	Maksimum: 0.9
+	Srednja vrednost: 0.11781167356064841
+
+Atribut: CASH_ADVANCE_TRX:
+	Minimum: 0.0
+	Prvi kvartil: 0.0
+	Mediana: 1.0
+	Treci kvartil: 3.0
+	Maksimum: 31.0
+	Srednja vrednost: 2.2884292901062047
+
+Atribut: PURCHASES_TRX:
+	Minimum: 0.0
+	Prvi kvartil: 0.0
+	Mediana: 1.0
+	Treci kvartil: 4.0
+	Maksimum: 43.0
+	Srednja vrednost: 2.9016210173281163
+
+Atribut: CREDIT_LIMIT:
+	Minimum: 150.0
+	Prvi kvartil: 1500.0
+	Mediana: 2500.0
+	Treci kvartil: 4500.0
+	Maksimum: 20000.0
+	Srednja vrednost: 3335.5417788845725
+
+Atribut: PAYMENTS:
+	Minimum: 0.0
+	Prvi kvartil: 304.28468775
+	Mediana: 586.0576385
+	Treci kvartil: 1178.353116
+	Maksimum: 29272.48607
+	Srednja vrednost: 1068.0136387037453
+
+Atribut: MINIMUM_PAYMENTS:
+	Minimum: 0.037744
+	Prvi kvartil: 173.64083575
+	Mediana: 312.343947
+	Treci kvartil: 606.9177905
+	Maksimum: 30528.4324
+	Srednja vrednost: 651.0459026447735
+
+Atribut: PRC_FULL_PAYMENT:
+	Minimum: 0.0
+	Prvi kvartil: 0.0
+	Mediana: 0.0
+	Treci kvartil: 0.0
+	Maksimum: 1.0
+	Srednja vrednost: 0.06467945388485187
+
+Atribut: TENURE:
+	Minimum: 10.0
+	Prvi kvartil: 12.0
+	Mediana: 12.0
+	Treci kvartil: 12.0
+	Maksimum: 12.0
+	Srednja vrednost: 11.885969815539408
+
+
+
+
+
+Klaster 2
+Atribut: BALANCE:
+	Minimum: 348.342172
+	Prvi kvartil: 1430.0240385000002
+	Mediana: 3006.594256
+	Treci kvartil: 6170.3830315
+	Maksimum: 19043.13856
+	Srednja vrednost: 4487.530827506024
+
+Atribut: BALANCE_FREQUENCY:
+	Minimum: 0.272727
+	Prvi kvartil: 1.0
+	Mediana: 1.0
+	Treci kvartil: 1.0
+	Maksimum: 1.0
+	Srednja vrednost: 0.9736035180722891
+
+Atribut: PURCHASES:
+	Minimum: 7739.48
+	Prvi kvartil: 10479.84
+	Mediana: 12024.37
+	Treci kvartil: 20584.465
+	Maksimum: 49039.57
+	Srednja vrednost: 16041.688313253013
+
+Atribut: ONEOFF_PURCHASES:
+	Minimum: 0.0
+	Prvi kvartil: 4254.8099999999995
+	Mediana: 9400.96
+	Treci kvartil: 13611.035
+	Maksimum: 40761.25
+	Srednja vrednost: 10806.773855421687
+
+Atribut: INSTALLMENTS_PURCHASES:
+	Minimum: 0.0
+	Prvi kvartil: 1660.0349999999999
+	Mediana: 4266.94
+	Treci kvartil: 7344.51
+	Maksimum: 22500.0
+	Srednja vrednost: 5234.914457831325
+
+Atribut: CASH_ADVANCE:
+	Minimum: 0.0
+	Prvi kvartil: 0.0
+	Mediana: 0.0
+	Treci kvartil: 0.0
+	Maksimum: 19513.474830000003
+	Srednja vrednost: 937.6867117108432
+
+Atribut: PURCHASES_FREQUENCY:
+	Minimum: 0.166667
+	Prvi kvartil: 1.0
+	Mediana: 1.0
+	Treci kvartil: 1.0
+	Maksimum: 1.0
+	Srednja vrednost: 0.9265060240963855
+
+Atribut: ONEOFF_PURCHASES_FREQUENCY:
+	Minimum: 0.0
+	Prvi kvartil: 0.583333
+	Mediana: 0.916667
+	Treci kvartil: 1.0
+	Maksimum: 1.0
+	Srednja vrednost: 0.746495108433735
+
+Atribut: PURCHASES_INSTALLMENTS_FREQUENCY:
+	Minimum: 0.0
+	Prvi kvartil: 0.625
+	Mediana: 0.916667
+	Treci kvartil: 1.0
+	Maksimum: 1.0
+	Srednja vrednost: 0.7806316144578315
+
+Atribut: CASH_ADVANCE_FREQUENCY:
+	Minimum: 0.0
+	Prvi kvartil: 0.0
+	Mediana: 0.0
+	Treci kvartil: 0.0
+	Maksimum: 1.0
+	Srednja vrednost: 0.06626504819277108
+
+Atribut: CASH_ADVANCE_TRX:
+	Minimum: 0.0
+	Prvi kvartil: 0.0
+	Mediana: 0.0
+	Treci kvartil: 0.0
+	Maksimum: 48.0
+	Srednja vrednost: 2.253012048192771
+
+Atribut: PURCHASES_TRX:
+	Minimum: 3.0
+	Prvi kvartil: 79.0
+	Mediana: 115.0
+	Treci kvartil: 175.5
+	Maksimum: 358.0
+	Srednja vrednost: 130.51807228915663
+
+Atribut: CREDIT_LIMIT:
+	Minimum: 2800.0
+	Prvi kvartil: 8000.0
+	Mediana: 10500.0
+	Treci kvartil: 16250.0
+	Maksimum: 30000.0
+	Srednja vrednost: 12050.602409638554
+
+Atribut: PAYMENTS:
+	Minimum: 2688.447014
+	Prvi kvartil: 8833.6168125
+	Mediana: 11845.84124
+	Treci kvartil: 20232.64613
+	Maksimum: 50721.483360000006
+	Srednja vrednost: 15656.28775025301
+
+Atribut: MINIMUM_PAYMENTS:
+	Minimum: 156.68356
+	Prvi kvartil: 344.179437
+	Mediana: 787.853297
+	Treci kvartil: 2606.0288065
+	Maksimum: 76406.20752000001
+	Srednja vrednost: 3447.2718676385534
+
+Atribut: PRC_FULL_PAYMENT:
+	Minimum: 0.0
+	Prvi kvartil: 0.0
+	Mediana: 0.166667
+	Treci kvartil: 0.833333
+	Maksimum: 1.0
+	Srednja vrednost: 0.3808754337349398
+
+Atribut: TENURE:
+	Minimum: 10.0
+	Prvi kvartil: 12.0
+	Mediana: 12.0
+	Treci kvartil: 12.0
+	Maksimum: 12.0
+	Srednja vrednost: 11.963855421686747
+
+
+
+
+
+Klaster 3
+Atribut: BALANCE:
+	Minimum: 0.0
+	Prvi kvartil: 55.31310325
+	Mediana: 287.990714
+	Treci kvartil: 1248.15468175
+	Maksimum: 11670.17985
+	Srednja vrednost: 904.8895467035088
+
+Atribut: BALANCE_FREQUENCY:
+	Minimum: 0.0
+	Prvi kvartil: 1.0
+	Mediana: 1.0
+	Treci kvartil: 1.0
+	Maksimum: 1.0
+	Srednja vrednost: 0.9167836614035088
+
+Atribut: PURCHASES:
+	Minimum: 12.0
+	Prvi kvartil: 360.45000000000005
+	Mediana: 673.77
+	Treci kvartil: 1457.96
+	Maksimum: 10166.69
+	Srednja vrednost: 1128.9869210526317
+
+Atribut: ONEOFF_PURCHASES:
+	Minimum: 0.0
+	Prvi kvartil: 0.0
+	Mediana: 0.0
+	Treci kvartil: 246.4425
+	Maksimum: 4694.68
+	Srednja vrednost: 255.10801754385966
+
+Atribut: INSTALLMENTS_PURCHASES:
+	Minimum: 12.0
+	Prvi kvartil: 315.015
+	Mediana: 558.16
+	Treci kvartil: 1110.0375000000001
+	Maksimum: 7571.4
+	Srednja vrednost: 874.5338508771929
+
+Atribut: CASH_ADVANCE:
+	Minimum: 0.0
+	Prvi kvartil: 0.0
+	Mediana: 0.0
+	Treci kvartil: 0.0
+	Maksimum: 6560.3527380000005
+	Srednja vrednost: 248.00353324561402
+
+Atribut: PURCHASES_FREQUENCY:
+	Minimum: 0.272727
+	Prvi kvartil: 0.818182
+	Mediana: 1.0
+	Treci kvartil: 1.0
+	Maksimum: 1.0
+	Srednja vrednost: 0.8839294403508772
+
+Atribut: ONEOFF_PURCHASES_FREQUENCY:
+	Minimum: 0.0
+	Prvi kvartil: 0.0
+	Mediana: 0.0
+	Treci kvartil: 0.166667
+	Maksimum: 1.0
+	Srednja vrednost: 0.10623469166666667
+
+Atribut: PURCHASES_INSTALLMENTS_FREQUENCY:
+	Minimum: 0.166667
+	Prvi kvartil: 0.75
+	Mediana: 0.916667
+	Treci kvartil: 1.0
+	Maksimum: 1.0
+	Srednja vrednost: 0.8453723916666666
+
+Atribut: CASH_ADVANCE_FREQUENCY:
+	Minimum: 0.0
+	Prvi kvartil: 0.0
+	Mediana: 0.0
+	Treci kvartil: 0.0
+	Maksimum: 0.833333
+	Srednja vrednost: 0.046236028508771926
+
+Atribut: CASH_ADVANCE_TRX:
+	Minimum: 0.0
+	Prvi kvartil: 0.0
+	Mediana: 0.0
+	Treci kvartil: 0.0
+	Maksimum: 23.0
+	Srednja vrednost: 0.9657894736842105
+
+Atribut: PURCHASES_TRX:
+	Minimum: 0.0
+	Prvi kvartil: 11.0
+	Mediana: 14.0
+	Treci kvartil: 26.0
+	Maksimum: 273.0
+	Srednja vrednost: 22.978508771929825
+
+Atribut: CREDIT_LIMIT:
+	Minimum: 300.0
+	Prvi kvartil: 1500.0
+	Mediana: 3000.0
+	Treci kvartil: 5000.0
+	Maksimum: 21500.0
+	Srednja vrednost: 3609.988813574123
+
+Atribut: PAYMENTS:
+	Minimum: 0.0
+	Prvi kvartil: 407.63341125
+	Mediana: 811.5793180000001
+	Treci kvartil: 1640.4663422500003
+	Maksimum: 14083.96809
+	Srednja vrednost: 1292.2219949526316
+
+Atribut: MINIMUM_PAYMENTS:
+	Minimum: 0.019163
+	Prvi kvartil: 161.063968
+	Mediana: 195.7658825
+	Treci kvartil: 632.397215
+	Maksimum: 56370.041170000004
+	Srednja vrednost: 899.8443180219298
+
+Atribut: PRC_FULL_PAYMENT:
+	Minimum: 0.0
+	Prvi kvartil: 0.0
+	Mediana: 0.083333
+	Treci kvartil: 0.5
+	Maksimum: 1.0
+	Srednja vrednost: 0.26101676535087714
+
+Atribut: TENURE:
+	Minimum: 9.0
+	Prvi kvartil: 12.0
+	Mediana: 12.0
+	Treci kvartil: 12.0
+	Maksimum: 12.0
+	Srednja vrednost: 11.906140350877193
+
+
+
+
+
+Klaster 4
+Atribut: BALANCE:
+	Minimum: 78.114579
+	Prvi kvartil: 2599.3579579999996
+	Mediana: 4487.993384
+	Treci kvartil: 6510.906764
+	Maksimum: 16304.88925
+	Srednja vrednost: 4787.141436322763
+
+Atribut: BALANCE_FREQUENCY:
+	Minimum: 0.181818
+	Prvi kvartil: 1.0
+	Mediana: 1.0
+	Treci kvartil: 1.0
+	Maksimum: 1.0
+	Srednja vrednost: 0.9680901970554927
+
+Atribut: PURCHASES:
+	Minimum: 0.0
+	Prvi kvartil: 0.0
+	Mediana: 66.32
+	Treci kvartil: 627.11
+	Maksimum: 8257.26
+	Srednja vrednost: 547.90181200453
+
+Atribut: ONEOFF_PURCHASES:
+	Minimum: 0.0
+	Prvi kvartil: 0.0
+	Mediana: 0.0
+	Treci kvartil: 309.25
+	Maksimum: 6678.26
+	Srednja vrednost: 331.8474292185731
+
+Atribut: INSTALLMENTS_PURCHASES:
+	Minimum: 0.0
+	Prvi kvartil: 0.0
+	Mediana: 0.0
+	Treci kvartil: 167.14
+	Maksimum: 5105.98
+	Srednja vrednost: 216.16952434881088
+
+Atribut: CASH_ADVANCE:
+	Minimum: 0.0
+	Prvi kvartil: 2884.459281
+	Mediana: 4212.521736
+	Treci kvartil: 6231.597583000001
+	Maksimum: 47137.211760000006
+	Srednja vrednost: 5162.6891420453
+
+Atribut: PURCHASES_FREQUENCY:
+	Minimum: 0.0
+	Prvi kvartil: 0.0
+	Mediana: 0.083333
+	Treci kvartil: 0.5
+	Maksimum: 1.0
+	Srednja vrednost: 0.27866006115515285
+
+Atribut: ONEOFF_PURCHASES_FREQUENCY:
+	Minimum: 0.0
+	Prvi kvartil: 0.0
+	Mediana: 0.0
+	Treci kvartil: 0.166667
+	Maksimum: 1.0
+	Srednja vrednost: 0.12717399093997736
+
+Atribut: PURCHASES_INSTALLMENTS_FREQUENCY:
+	Minimum: 0.0
+	Prvi kvartil: 0.0
+	Mediana: 0.0
+	Treci kvartil: 0.333333
+	Maksimum: 1.0
+	Srednja vrednost: 0.19688383125707817
+
+Atribut: CASH_ADVANCE_FREQUENCY:
+	Minimum: 0.0
+	Prvi kvartil: 0.333333
+	Mediana: 0.5
+	Treci kvartil: 0.666667
+	Maksimum: 1.1
+	Srednja vrednost: 0.511273758776897
+
+Atribut: CASH_ADVANCE_TRX:
+	Minimum: 0.0
+	Prvi kvartil: 9.0
+	Mediana: 13.0
+	Treci kvartil: 20.0
+	Maksimum: 123.0
+	Srednja vrednost: 16.346545866364664
+
+Atribut: PURCHASES_TRX:
+	Minimum: 0.0
+	Prvi kvartil: 0.0
+	Mediana: 1.0
+	Treci kvartil: 9.0
+	Maksimum: 142.0
+	Srednja vrednost: 8.562853907134768
+
+Atribut: CREDIT_LIMIT:
+	Minimum: 50.0
+	Prvi kvartil: 5500.0
+	Mediana: 7500.0
+	Treci kvartil: 10250.0
+	Maksimum: 21000.0
+	Srednja vrednost: 8076.505713992072
+
+Atribut: PAYMENTS:
+	Minimum: 0.0
+	Prvi kvartil: 1402.435681
+	Mediana: 2369.347633
+	Treci kvartil: 5443.249363000001
+	Maksimum: 40627.595239999995
+	Srednja vrednost: 4259.184509774632
+
+Atribut: MINIMUM_PAYMENTS:
+	Minimum: 16.95009
+	Prvi kvartil: 762.1131935
+	Mediana: 1355.822971
+	Treci kvartil: 2093.3007395
+	Maksimum: 27631.450719999997
+	Srednja vrednost: 1742.1156910690827
+
+Atribut: PRC_FULL_PAYMENT:
+	Minimum: 0.0
+	Prvi kvartil: 0.0
+	Mediana: 0.0
+	Treci kvartil: 0.0
+	Maksimum: 1.0
+	Srednja vrednost: 0.04598036693091733
+
+Atribut: TENURE:
+	Minimum: 7.0
+	Prvi kvartil: 12.0
+	Mediana: 12.0
+	Treci kvartil: 12.0
+	Maksimum: 12.0
+	Srednja vrednost: 11.767836919592298
+
+
+
+
+
+Klaster 5
+Atribut: BALANCE:
+	Minimum: 0.0
+	Prvi kvartil: 64.62196825000001
+	Mediana: 484.054863
+	Treci kvartil: 1295.10492125
+	Maksimum: 9601.071318
+	Srednja vrednost: 1005.1372572357724
+
+Atribut: BALANCE_FREQUENCY:
+	Minimum: 0.0
+	Prvi kvartil: 0.666667
+	Mediana: 0.875
+	Treci kvartil: 1.0
+	Maksimum: 1.0
+	Srednja vrednost: 0.7857254918699187
+
+Atribut: PURCHASES:
+	Minimum: 0.0
+	Prvi kvartil: 0.0
+	Mediana: 180.125
+	Treci kvartil: 580.4875
+	Maksimum: 8533.54
+	Srednja vrednost: 458.9876693766938
+
+Atribut: ONEOFF_PURCHASES:
+	Minimum: 0.0
+	Prvi kvartil: 0.0
+	Mediana: 0.0
+	Treci kvartil: 266.45000000000005
+	Maksimum: 6520.0
+	Srednja vrednost: 284.8813008130082
+
+Atribut: INSTALLMENTS_PURCHASES:
+	Minimum: 0.0
+	Prvi kvartil: 0.0
+	Mediana: 0.0
+	Treci kvartil: 231.35
+	Maksimum: 4460.78
+	Srednja vrednost: 174.51287262872629
+
+Atribut: CASH_ADVANCE:
+	Minimum: 0.0
+	Prvi kvartil: 0.0
+	Mediana: 440.616034
+	Treci kvartil: 1819.5479282499998
+	Maksimum: 10590.41113
+	Srednja vrednost: 1221.924077803523
+
+Atribut: PURCHASES_FREQUENCY:
+	Minimum: 0.0
+	Prvi kvartil: 0.0
+	Mediana: 0.333333
+	Treci kvartil: 0.857143
+	Maksimum: 1.0
+	Srednja vrednost: 0.42584429132791335
+
+Atribut: ONEOFF_PURCHASES_FREQUENCY:
+	Minimum: 0.0
+	Prvi kvartil: 0.0
+	Mediana: 0.0
+	Treci kvartil: 0.166667
+	Maksimum: 1.0
+	Srednja vrednost: 0.1359041815718157
+
+Atribut: PURCHASES_INSTALLMENTS_FREQUENCY:
+	Minimum: 0.0
+	Prvi kvartil: 0.0
+	Mediana: 0.0
+	Treci kvartil: 0.666667
+	Maksimum: 1.0
+	Srednja vrednost: 0.28512980623306233
+
+Atribut: CASH_ADVANCE_FREQUENCY:
+	Minimum: 0.0
+	Prvi kvartil: 0.0
+	Mediana: 0.14285699999999998
+	Treci kvartil: 0.333333
+	Maksimum: 1.5
+	Srednja vrednost: 0.20348977100271004
+
+Atribut: CASH_ADVANCE_TRX:
+	Minimum: 0.0
+	Prvi kvartil: 0.0
+	Mediana: 1.0
+	Treci kvartil: 5.0
+	Maksimum: 52.0
+	Srednja vrednost: 3.600271002710027
+
+Atribut: PURCHASES_TRX:
+	Minimum: 0.0
+	Prvi kvartil: 0.0
+	Mediana: 3.5
+	Treci kvartil: 8.0
+	Maksimum: 98.0
+	Srednja vrednost: 6.107046070460704
+
+Atribut: CREDIT_LIMIT:
+	Minimum: 300.0
+	Prvi kvartil: 1200.0
+	Mediana: 1500.0
+	Treci kvartil: 3000.0
+	Maksimum: 20000.0
+	Srednja vrednost: 2701.9692863590785
+
+Atribut: PAYMENTS:
+	Minimum: 0.0
+	Prvi kvartil: 147.27179975
+	Mediana: 311.4322035
+	Treci kvartil: 701.4922735
+	Maksimum: 19998.38969
+	Srednja vrednost: 689.238576691057
+
+Atribut: MINIMUM_PAYMENTS:
+	Minimum: 0.31195300000000004
+	Prvi kvartil: 101.98399775
+	Mediana: 195.1247645
+	Treci kvartil: 383.83303550000005
+	Maksimum: 61031.6186
+	Srednja vrednost: 620.5024856205962
+
+Atribut: PRC_FULL_PAYMENT:
+	Minimum: 0.0
+	Prvi kvartil: 0.0
+	Mediana: 0.0
+	Treci kvartil: 0.2
+	Maksimum: 1.0
+	Srednja vrednost: 0.16220049322493224
+
+Atribut: TENURE:
+	Minimum: 6.0
+	Prvi kvartil: 6.0
+	Mediana: 7.0
+	Treci kvartil: 8.0
+	Maksimum: 12.0
+	Srednja vrednost: 7.429539295392954
+
+
+
+
+
+Klaster 6
+Atribut: BALANCE:
+	Minimum: 0.0
+	Prvi kvartil: 233.20484125000002
+	Mediana: 846.1555195000001
+	Treci kvartil: 2539.63744875
+	Maksimum: 18495.55855
+	Srednja vrednost: 1829.0851868487034
+
+Atribut: BALANCE_FREQUENCY:
+	Minimum: 0.0
+	Prvi kvartil: 1.0
+	Mediana: 1.0
+	Treci kvartil: 1.0
+	Maksimum: 1.0
+	Srednja vrednost: 0.9690653126801153
+
+Atribut: PURCHASES:
+	Minimum: 8.4
+	Prvi kvartil: 916.4000000000001
+	Mediana: 1776.69
+	Treci kvartil: 3246.13
+	Maksimum: 11994.71
+	Srednja vrednost: 2353.2550720461095
+
+Atribut: ONEOFF_PURCHASES:
+	Minimum: 0.0
+	Prvi kvartil: 720.455
+	Mediana: 1350.94
+	Treci kvartil: 2422.7675
+	Maksimum: 11994.71
+	Srednja vrednost: 1856.619574927954
+
+Atribut: INSTALLMENTS_PURCHASES:
+	Minimum: 0.0
+	Prvi kvartil: 0.0
+	Mediana: 235.935
+	Treci kvartil: 748.2
+	Maksimum: 4092.67
+	Srednja vrednost: 496.84079250720464
+
+Atribut: CASH_ADVANCE:
+	Minimum: 0.0
+	Prvi kvartil: 0.0
+	Mediana: 0.0
+	Treci kvartil: 90.332686
+	Maksimum: 7894.578815999999
+	Srednja vrednost: 324.1103661757926
+
+Atribut: PURCHASES_FREQUENCY:
+	Minimum: 0.083333
+	Prvi kvartil: 0.75
+	Mediana: 0.916667
+	Treci kvartil: 1.0
+	Maksimum: 1.0
+	Srednja vrednost: 0.843715628962536
+
+Atribut: ONEOFF_PURCHASES_FREQUENCY:
+	Minimum: 0.0
+	Prvi kvartil: 0.583333
+	Mediana: 0.75
+	Treci kvartil: 1.0
+	Maksimum: 1.0
+	Srednja vrednost: 0.7342361073487031
+
+Atribut: PURCHASES_INSTALLMENTS_FREQUENCY:
+	Minimum: 0.0
+	Prvi kvartil: 0.0
+	Mediana: 0.416667
+	Treci kvartil: 0.75
+	Maksimum: 1.0
+	Srednja vrednost: 0.4281100043227666
+
+Atribut: CASH_ADVANCE_FREQUENCY:
+	Minimum: 0.0
+	Prvi kvartil: 0.0
+	Mediana: 0.0
+	Treci kvartil: 0.083333
+	Maksimum: 0.75
+	Srednja vrednost: 0.05436750792507205
+
+Atribut: CASH_ADVANCE_TRX:
+	Minimum: 0.0
+	Prvi kvartil: 0.0
+	Mediana: 0.0
+	Treci kvartil: 1.0
+	Maksimum: 22.0
+	Srednja vrednost: 1.0151296829971181
+
+Atribut: PURCHASES_TRX:
+	Minimum: 1.0
+	Prvi kvartil: 13.0
+	Mediana: 25.0
+	Treci kvartil: 43.0
+	Maksimum: 309.0
+	Srednja vrednost: 33.12608069164265
+
+Atribut: CREDIT_LIMIT:
+	Minimum: 300.0
+	Prvi kvartil: 4000.0
+	Mediana: 6500.0
+	Treci kvartil: 9500.0
+	Maksimum: 30000.0
+	Srednja vrednost: 7156.1075451923625
+
+Atribut: PAYMENTS:
+	Minimum: 0.0
+	Prvi kvartil: 951.6459305000001
+	Mediana: 1694.565924
+	Treci kvartil: 2986.33573075
+	Maksimum: 14373.3929
+	Srednja vrednost: 2287.4846202074928
+
+Atribut: MINIMUM_PAYMENTS:
+	Minimum: 3.19794
+	Prvi kvartil: 180.62981299999998
+	Mediana: 287.332985
+	Treci kvartil: 795.42182525
+	Maksimum: 9642.502512000001
+	Srednja vrednost: 647.3240071548992
+
+Atribut: PRC_FULL_PAYMENT:
+	Minimum: 0.0
+	Prvi kvartil: 0.0
+	Mediana: 0.0
+	Treci kvartil: 0.5
+	Maksimum: 1.0
+	Srednja vrednost: 0.25741174639769454
+
+Atribut: TENURE:
+	Minimum: 9.0
+	Prvi kvartil: 12.0
+	Mediana: 12.0
+	Treci kvartil: 12.0
+	Maksimum: 12.0
+	Srednja vrednost: 11.9157060518732
+
+
+
+

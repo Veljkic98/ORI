@@ -32,25 +32,19 @@ def load_data(df):
     return data
 
 
-def plot_2_D(data, xlab, ylab, kmeans, x, y):
+#TODO: poseno iscrtati centre ispod, kako bi se videli na plotu
+def plot_2_D(k_means):
     # iscrtavamo sve tacke
+    colors = {0: 'blue', 1: 'orange', 2: 'green', 3: 'red', 4: 'purple',
+              5: 'brown', 6: 'pink', 7: 'indigo', 8: 'pink', 9: 'gray'}
     plt.figure()
-    for i in range(len(data)):
-        plt.scatter(data[i][x], data[i][y])
+    for idx, cluster in enumerate(k_means.clusters):
+        plt.scatter(cluster.center[0], cluster.center[1], c='black', marker='x', s=100)
+        for datum in cluster.data:
+            plt.scatter(datum[0], datum[1], c=colors[idx])
 
-    plt.xlabel(xlab)
-    plt.ylabel(ylab)
-    plt.show()
-
-    colors = {0: 'red', 1: 'green', 2: 'blue'}  # , 3: 'purple'
-    plt.figure()
-    for idx, cluster in enumerate(kmeans.clusters):
-        plt.scatter(cluster.center[x], cluster.center[y], c=colors[idx], marker='x', s=200)  # iscrtavanje centara
-        for d in cluster.data:  # iscrtavanje tacaka
-            plt.scatter(d[x], d[y], c=colors[idx])
-
-    plt.xlabel(xlab)
-    plt.ylabel(ylab)
+    plt.xlabel('X osa - komponenta')
+    plt.ylabel('Y osa - komponenta')
     plt.show()
 
 
@@ -88,11 +82,25 @@ def components_plot(data):
     plt.show()
 
 
+def min_max_data(df, columns):
+    print("*** Maksimalne i minimalne vrednosti za svaku kolonu ***\n\n")
+    for c in columns:
+        print(c)
+        print("Max: " + str(df.iloc[:, 1:][c].max()))
+        print("Min: " + str(df.iloc[:, 1:][c].min()))
+    print("\n\n")
+
+
 def main2():
     df = pd.read_csv('credit_card_data.csv')
     df = df.fillna(df.median())
     original_data = df.iloc[:, 1:].values
     data = copy.deepcopy(original_data)
+
+    columns = list(df.columns)[1:]  # lista naziva kolona
+    print(columns)
+
+    # min_max_data(df, columns)
 
     normalizacija(data)  # radimo normalizaciju nad ucitanim podacima
 
@@ -105,7 +113,7 @@ def main2():
     plt.ylabel('Variance')
     plt.show()
 
-    components = 9  # vidimo iz plota
+    components = 7  # vidimo iz plota
     pca = PCA(n_components=components)
     pca.fit(data)
     scores = pca.transform(data)
@@ -119,59 +127,59 @@ def main2():
     plt.show()
 
     # dobijam optimal k = 5 za 500 prvih ucitanih
+    # za sve ucitane dobijam 6
     # optimal_k_plot(data)
 
-    broj_klastera = 5
+    broj_klastera = 6
 
     k_means = MyKMeans(n_clusters=broj_klastera, max_iter=100)
     k_means.fit(scores)
     klaster_indeksi = k_means.klaster_indeksi
     print(klaster_indeksi)
 
-    columns = list(df.columns)[1:]
+    # lista_klastera_sa_originalnim_podacima = [[], [], [], [], [], []]  # lista klastera sa originalnim podacima
 
-    summary = [[]] * broj_klastera
-    print(summary)
+    lista_klastera_sa_originalnim_podacima = []  # lista klastera sa originalnim podacima
+    for i in range(broj_klastera):
+        lista_klastera_sa_originalnim_podacima.append([])
+
     for i in range(len(original_data)):
-        summary[klaster_indeksi[i]].append(original_data[i])
+        lista_klastera_sa_originalnim_podacima[klaster_indeksi[i]].append(original_data[i])
 
-    print(
-        '===================================================Summary===================================================')
-    for i in range(len(summary)):
-        if i != 0:
-            print('\n\n')
-        print('\nCluster ' + str(i + 1))
-        print('--------------------------------------------------------------------')
-        print('Description')
-        print('--------------------------------------------------------------------')
+    # printujem osobine i stablo odlucivanja
+    print_descriptions(lista_klastera_sa_originalnim_podacima, columns)
+    # pecin_print(lista_klastera_sa_originalnim_podacima, columns)
+    # print_decision_tree(original_data, klaster_indeksi, columns)
+
+    # iscrtavamo tacke
+    plot_2_D(k_means)
+
+
+def print_descriptions(lista_klastera_sa_originalnim_podacima, columns):
+    print("*** OPIS SVIH KLASTERA ***")
+    for i, d in enumerate(lista_klastera_sa_originalnim_podacima, start=0):
+        print('\nKlaster ' + str(i + 1))
         for j in range(len(columns)):
-            if j != 0:
-                print()
-            print('Attribute ' + columns[j] + ':')
-            print('\tMaximum value: ' + str(max([datum[j] for datum in summary[i]])))
-            print('\tThird quartile: ' + str(np.percentile([datum[j] for datum in summary[i]], 75)))
-            print('\tMean: ' + str(np.percentile([datum[j] for datum in summary[i]], 50)))
-            print('\tFirst quartile: ' + str(np.percentile([datum[j] for datum in summary[i]], 25)))
-            print('\tMinimum value: ' + str(min([datum[j] for datum in summary[i]])))
+            print('Atribut: ' + columns[j] + ':')
+            print('\tMinimum: ' + str(min([datum[j] for datum in d])))
+            print('\tPrvi kvartil: ' + str(np.percentile([datum[j] for datum in d], 25)))
+            print('\tMediana: ' + str(np.percentile([datum[j] for datum in d], 50)))
+            print('\tTreci kvartil: ' + str(np.percentile([datum[j] for datum in d], 75)))
+            print('\tMaksimum: ' + str(max([datum[j] for datum in d])))
+            print('\tSrednja vrednost: ' + str(np.mean([datum[j] for datum in d])))
 
-    print(
-        '\n\n\n\n==========================================Decision tree==========================================\n\n')
+            print()  # prazan red
+
+        print('\n\n')
+
+
+def print_decision_tree(original_data, klaster_indeksi, columns):
+    print("*** Stablo odlucivanja ***\n")
     clf = tree.DecisionTreeClassifier()
     clf = clf.fit(original_data, klaster_indeksi)
 
     text_tree = tree.export_text(clf, feature_names=list(columns))
     print(text_tree)
-
-    colors = {0: 'red', 1: 'green', 2: 'blue', 3: 'purple', 4: 'orange', 5: 'cyan', 6: 'yellow', 7: 'indigo', 8: 'pink', 9: 'black'}
-    plt.figure()
-    for idx, cluster in enumerate(k_means.clusters):
-        plt.scatter(cluster.center[0], cluster.center[1], c=colors[idx], marker='x', s=100)
-        for datum in cluster.data:
-            plt.scatter(datum[0], datum[1], c=colors[idx])
-
-    plt.xlabel('Component 1')
-    plt.ylabel('Component 2')
-    plt.show()
 
 
 def normalizacija(data):
