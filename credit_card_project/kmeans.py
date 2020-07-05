@@ -37,9 +37,12 @@ class KMeans(object):
         self.n_clusters = n_clusters
         self.max_iter = max_iter
         self.clusters = []
+        self.klaster_indeksi = []
 
     def fit(self, data, normalize=True):
         self.data = data  # lista N-dimenzionalnih podataka
+        self.klaster_indeksi = [0] * len(self.data)
+        # print(self.klaster_indeksi)
         # TODO 4: normalizovati podatke pre primene k-means
         if normalize:
             self.data = self.normalize_data(self.data)
@@ -62,9 +65,10 @@ class KMeans(object):
                 cluster.data = []
 
             # iteriramo kroz N-dimenzione podatke
-            for d in self.data:
+            for i, d in enumerate(self.data, start=0):
                 # index klastera kom pripada tacka
                 cluster_index = self.predict(d)
+                self.klaster_indeksi[i] = cluster_index
                 # dodamo tacku u klaster kako bi izracunali centar
                 self.clusters[cluster_index].data.append(d)
 
