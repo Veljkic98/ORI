@@ -9,7 +9,7 @@ Atribut: BALANCE:
 	Maksimum: 9061.317491
 	Srednja vrednost: 1134.3848683882059
 
-Atribut: BALANCE_FREQUENCY:
+Atribut: x-BALANCE_FREQUENCY:
 	Minimum: 0.0
 	Prvi kvartil: 0.636364
 	Mediana: 1.0
@@ -150,7 +150,7 @@ Atribut: BALANCE:
 	Maksimum: 19043.13856
 	Srednja vrednost: 4487.530827506024
 
-Atribut: BALANCE_FREQUENCY:
+Atribut: x-BALANCE_FREQUENCY:
 	Minimum: 0.272727
 	Prvi kvartil: 1.0
 	Mediana: 1.0
@@ -291,7 +291,7 @@ Atribut: BALANCE:
 	Maksimum: 11670.17985
 	Srednja vrednost: 904.8895467035088
 
-Atribut: BALANCE_FREQUENCY:
+Atribut: x-BALANCE_FREQUENCY:
 	Minimum: 0.0
 	Prvi kvartil: 1.0
 	Mediana: 1.0
@@ -432,7 +432,7 @@ Atribut: BALANCE:
 	Maksimum: 16304.88925
 	Srednja vrednost: 4787.141436322763
 
-Atribut: BALANCE_FREQUENCY:
+Atribut: x-BALANCE_FREQUENCY:
 	Minimum: 0.181818
 	Prvi kvartil: 1.0
 	Mediana: 1.0
@@ -573,7 +573,7 @@ Atribut: BALANCE:
 	Maksimum: 9601.071318
 	Srednja vrednost: 1005.1372572357724
 
-Atribut: BALANCE_FREQUENCY:
+Atribut: x-BALANCE_FREQUENCY:
 	Minimum: 0.0
 	Prvi kvartil: 0.666667
 	Mediana: 0.875
@@ -714,7 +714,7 @@ Atribut: BALANCE:
 	Maksimum: 18495.55855
 	Srednja vrednost: 1829.0851868487034
 
-Atribut: BALANCE_FREQUENCY:
+Atribut: x-BALANCE_FREQUENCY:
 	Minimum: 0.0
 	Prvi kvartil: 1.0
 	Mediana: 1.0

@@ -1,0 +1,20 @@
+BALANCE : stanje na računu dostupno za kupovinu
+BALANCEFREQUENCY : koliko često se menja balans, vrednost između 0 i 1 (1 = često, 0 = retko)
+PURCHASES : ukupan iznos potrošen na kupovinu
+ONEOFF_PURCHASES : iznos potrošen na kupovinu jednokratno
+INSTALLMENTS_PURCHASES : iznos potrošen na kupovinu na rate
+CASH_ADVANCE : iznos koji je korisnik uplatio unapred
+PURCHASES_FREQUENCY : koliko često korisnik kupuje, vrednost između 0 i 1 (1 = često, 0 = retko)
+ONEOFF_PURCHASES_FREQUENCY : koliko često kupuje jednokratno (1 = često, 0 = retko)
+PURCHASES_INSTALLMENTS_FREQUENCY : koliko često kupuje na rate (1 = često, 0 = retko)
+CASH_ADVANCE_FREQUENCY : koliko se često uplaćuje novac unapred
+CASH_ADVANCE_TRX : broj transakcija sa uplaćenim novcem unapred
+PURCHASES_TRX : broj transakcija koje su vezane za kupovinu
+CREDIT_LIMIT : limit na kreditnoj kartici
+PAYMENTS : ukupan iznos uplaćen na karticu
+MINIMUM_PAYMENTS : minimalan iznos koji je korisnik uplatio na karticu
+PRCFULLPAYMENT : procenat ukupnog iznosa koji korisnik treba da uplati na karticu
+TENURE : koliko još važe usluge kreditne kartice
+
+
+	

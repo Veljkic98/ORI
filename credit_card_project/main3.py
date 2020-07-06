@@ -1,5 +1,7 @@
 from __future__ import print_function
 
+from builtins import print
+
 import numpy
 
 import pandas as pd
@@ -32,16 +34,19 @@ def load_data(df):
     return data
 
 
-#TODO: poseno iscrtati centre ispod, kako bi se videli na plotu
 def plot_2_D(k_means):
     # iscrtavamo sve tacke
     colors = {0: 'blue', 1: 'orange', 2: 'green', 3: 'red', 4: 'purple',
               5: 'brown', 6: 'pink', 7: 'indigo', 8: 'pink', 9: 'gray'}
     plt.figure()
     for idx, cluster in enumerate(k_means.clusters):
-        plt.scatter(cluster.center[0], cluster.center[1], c='black', marker='x', s=100)
+        # plt.scatter(cluster.center[0], cluster.center[1], c='black', marker='x', s=100)
         for datum in cluster.data:
             plt.scatter(datum[0], datum[1], c=colors[idx])
+
+    # iscrtavanje centara
+    for idx, cluster in enumerate(k_means.clusters):
+        plt.scatter(cluster.center[0], cluster.center[1], c='black', marker='x', s=100)
 
     plt.xlabel('X osa - komponenta')
     plt.ylabel('Y osa - komponenta')
@@ -137,8 +142,6 @@ def main2():
     klaster_indeksi = k_means.klaster_indeksi
     print(klaster_indeksi)
 
-    # lista_klastera_sa_originalnim_podacima = [[], [], [], [], [], []]  # lista klastera sa originalnim podacima
-
     lista_klastera_sa_originalnim_podacima = []  # lista klastera sa originalnim podacima
     for i in range(broj_klastera):
         lista_klastera_sa_originalnim_podacima.append([])
@@ -148,8 +151,8 @@ def main2():
 
     # printujem osobine i stablo odlucivanja
     print_descriptions(lista_klastera_sa_originalnim_podacima, columns)
-    # pecin_print(lista_klastera_sa_originalnim_podacima, columns)
     # print_decision_tree(original_data, klaster_indeksi, columns)
+    print_clusters_description()
 
     # iscrtavamo tacke
     plot_2_D(k_means)
@@ -167,10 +170,43 @@ def print_descriptions(lista_klastera_sa_originalnim_podacima, columns):
             print('\tTreci kvartil: ' + str(np.percentile([datum[j] for datum in d], 75)))
             print('\tMaksimum: ' + str(max([datum[j] for datum in d])))
             print('\tSrednja vrednost: ' + str(np.mean([datum[j] for datum in d])))
+            print('\tUkupno korisnika: ' + str(len(d)))
 
             print()  # prazan red
 
         print('\n\n')
+
+
+def print_clusters_description():
+    print("*** Osobine klastera ***\n\n")
+
+    print("Klaster 1:")
+    print("\tU ovoj grupi korisnika, korisnici imaju vema malo stanje na racunu za kupovinu.\n"
+          "\tTim je takodje i iznos za kupovinu veoma mali. Vise novca je potroseno na jednokratnu kupovinu\n"
+          "\tnego na kupovinu na rate. Veoma mala suma uplacivanja novca unapred, za one koji uopste uplacuju.\n"
+          "\tSkoro pola ih uopste neuplacuje unapred.\n\n")
+    print("Klaster 2:")
+    print("\tZa ovu grupu korisnicu u proseku trose cetvrtinu iznosa na kupovinu. Novac se skoro nikad ne uplacuje unapred.\n"
+          "\tVecina kupuje jednokratno. Korisnici su raznovrsni sto se tice limita na kreditnoj kartici.\n"
+          "\tVecina ima mali minimalni iznos uplacen na karticu.\n"
+          "\tU ovoj grupi ima najvise korisnika.\n\n")
+    print("Klaster 3:")
+    print("\tNisko stanje na racunu dostupno za kupovinu. Malo se trosi na kupovinu.\n"
+          "\tVise od pola korisnika ne placa jednokratno, dok na rate placaju svi, i prosek je veci za 4 puta.\n"
+          "\tNovac se u ovoj grupi skoro nikad ne uplacuje unapred.\n"
+          "\tOva grupa je po broju korisnika druga po velicini.\n\n")
+    print("Klaster 4:")
+    print("\tVeoma mali iznos potrosen na kupovinu. Jako retka jednokratna kupovina.\n\n")
+    print("Klaster 5:")
+    print("\tStanje na racunu dostupno za kupovinu je malo, a samim tim je i mali iznos potrosen na kupovinu.\n"
+          "\tVise se kupovalo na rate nego jednokratno (jednokratno veoma retko).\n"
+          "\tTakodje spadaju i korisnici kod kojih je iznos koji je uplacen unapred veoma mali i imaju mali limit\n"
+          "\tna kreditnoj kartici. Ukupan iznos koji je uplacen na kraticu je mali.\n"
+          "\tU ovoj grupi ima najmanje korisnika.\n\n")
+    print("Klaster 6:")
+    print("\tStanje na racunu dostupno za kupovinu je generalno malo, a samim tim i ukupan\n"
+          "\tiznos potrosen na kupovinu mali. Potrosanja na rate je 4 puta veca od jendnokratne potrosnje,\n"
+          "\tali je jednokratna potrosnja ucestalija. Iznos koji je korisnik uplatio unapred je u proseku veoma mali.\n\n")
 
 
 def print_decision_tree(original_data, klaster_indeksi, columns):
@@ -198,32 +234,6 @@ def normalizacija(data):
             row[col] = (row[col] - mean) / std
 
     return data
-
-
-def prikaz2(finalDf, cl_centers):
-    fig = plt.figure(figsize=(8, 8))
-    ax = fig.add_subplot(1, 1, 1)
-    ax.set_xlabel('x osa', fontsize=15)
-    ax.set_ylabel('y osa', fontsize=15)
-    ax.set_title('Grupe korisnika', fontsize=20)
-
-    clusters = [0, 1, 2]
-    colors = ['r', 'g', 'b']
-    markers = ['*', 'X', 'o']
-
-    legend = ['Grupa 1', 'Grupa 2', 'Grupa 3',
-              'Centar grupe 1', 'Centar grupe 2', 'Centar grupe 3']
-
-    # for target, color in zip(clusters, colors):
-    #     f = finalDf.loc[finalDf['CLUSTER'] == target]
-    #     ax.scatter(f['x_axis'], f['y_axis'], c=color, s=50)
-    #
-    # for target, mark in zip(clusters, markers):
-    #     ax.scatter(cl_centers[target, 0], cl_centers[target, 1], color='black', marker=mark, label='centroid')
-    #
-    # ax.legend(legend)
-    # ax.grid()
-    # plt.show()
 
 
 def good_number_of_clusters(vals):
