@@ -10,7 +10,7 @@
 
 ### pacman_project2
 
-- U ovom projektu smo definisali  funkciju evaluavije koju koriste pekmeni u našem timu. Naši agenti su u stanju da pobede suprotnički tim koristeći ovu funkciju.
+- U ovom projektu smo definisali funkciju evaluacije koju koriste pekmeni u našem timu. Naši agenti su u stanju da pobede suprotnički tim koristeći ovu funkciju.
 
 ### credit_card_project
 
@@ -18,4 +18,4 @@
 
 ### klasifikacija_slika_cnn
 
-- U ovom projektu smo koristili konvlutivne neuronske mreže kako bi napravili kategorizaciju slika u sledeće kategorije: automobil, avion, brod, kamion.
+- U ovom projektu smo koristili konvolutivne neuronske mreže kako bi napravili kategorizaciju slika u sledeće kategorije: automobil, avion, brod, kamion.
