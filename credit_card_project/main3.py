@@ -138,7 +138,7 @@ def main2():
     broj_klastera = 6
 
     k_means = MyKMeans(n_clusters=broj_klastera, max_iter=100)
-    k_means.fit(scores)
+    k_means.fit(scores, normalize=False)
     klaster_indeksi = k_means.klaster_indeksi
     print(klaster_indeksi)
 

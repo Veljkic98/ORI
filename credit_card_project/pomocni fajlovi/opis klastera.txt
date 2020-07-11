@@ -1,6 +1,6 @@
 Teze za opis:
 
-Klaster 1
+Klaster 1 735
 	Veoma nizak BALANCE
 	Veoma nizak PURCHASES
 	jako mlao se kupovalo na rate, malo jednokratne kopuvona, malo kupovine uopste
@@ -8,7 +8,7 @@ Klaster 1
 	jaaaako malo uplacuju novac unapred
 	mali iznos se uplacuje na karticu
 
-Klaster 2
+Klaster 2 3367
 	u proseku cetvrtinu iznosa trose na kupovinu
 	Jaaako mlai cash_advance
 	vecina kupuje jednokratno
@@ -16,7 +16,7 @@ Klaster 2
 	Sto se tice credid_limita, postoje razni
 	vecinom imaju jako mali MINIMUM_PAYMENTS
 
-Klaster 3
+Klaster 3 2551
 	imaju nizam BALANCE
 	mali purchases
 	mali INSTALLMENTS_PURCHASES
@@ -25,11 +25,11 @@ Klaster 3
 	novac se skoro nikad ne uplacuje unapred
 	generalno mali iznos uplacen na karticu
 
-Klaster 4
+Klaster 4 902
 	purchases minimalan doslovno
 	jako retko kupuju jednokratno
 
-Klaster 5
+Klaster 5 82
 	balance mali
 	veoma mali purchases
 	vise kupovali na rate nego jednokratno
@@ -38,7 +38,7 @@ Klaster 5
 	mali credit_limit
 	jako mali payments
 
-Klaster 6
+Klaster 6 1313
 	mali balance
 	mali purchases
 	INSTALLMENTS_PURCHASES vec 4x od ONEOFF_PURCHASES
